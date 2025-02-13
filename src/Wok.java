@@ -2,13 +2,13 @@ package src;
 
 public class Wok {
     private Base base;
-    private Ingredient[] ingredinets;
+    private Ingredient[] ingredients;
     private Salsa salsa;
     private double preu;
 
-    public Wok(Base base,Ingredient[] ingredinets,Salsa salsa){
+    public Wok(Base base,Ingredient[] ingredients,Salsa salsa){
         this.base = base;
-        this.ingredinets = ingredinets;
+        this.ingredients = ingredients;
         this.salsa = salsa;
         calcularPreu();
     }
