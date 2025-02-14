@@ -1,12 +1,9 @@
 package src.model;
 
-public class Salsa {
-    private String descripcio;
-    private double preu;
+public class Salsa extends Producte {
 
     public Salsa(String desc,double preu){
-        this.descripcio = desc;
-        this.preu = preu;
+        super( desc, preu);
     }
 
     public String getDescripcio() {

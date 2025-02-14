@@ -1,21 +1,11 @@
 package src.model;
 
-public class Ingredient {
-    private String descripcio;
-    private double preu;
+public class Ingredient extends Producte{
 
-    public Ingredient(String descripcio,double preu){
-        this.descripcio = descripcio;
-        this.preu = preu;
+    public Ingredient(String desc,double preu){
+        super( desc, preu);
     }
 
-    public String getDescripcio(){
-        return this.descripcio;
-    }
-
-    public double getPreu(){
-        return this.preu;
-    }
 
     @Override
     public String toString() {

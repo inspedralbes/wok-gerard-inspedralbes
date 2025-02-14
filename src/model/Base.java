@@ -1,13 +1,10 @@
 package src.model;
 
-public class Base {
-    private String descripcio;
-    private double preu;
+public class Base extends Producte {
     private String mida;
 
     public Base(String desc,double preu,String mida){
-        this.descripcio = desc;
-        this.preu = preu;
+        super( desc, preu);
         this.mida = mida;
     }
 
@@ -16,11 +13,11 @@ public class Base {
     }
 
     public String getMida() {
-        return mida;
+        return this.mida;
     }
 
     public double getPreu() {
-        return preu;
+        return super.preu;
     }
 
     @Override
