@@ -1,25 +1,24 @@
-package src;
+package src.model;
 
-public class Base {
+public class Salsa {
     private String descripcio;
     private double preu;
-    private String mida;
 
-    public Base(String desc,double preu,String mida){
+    public Salsa(String desc,double preu){
         this.descripcio = desc;
         this.preu = preu;
-        this.mida = mida;
     }
 
     public String getDescripcio() {
         return descripcio;
     }
 
-    public String getMida() {
-        return mida;
-    }
-
     public double getPreu() {
         return preu;
+    }
+
+    @Override
+    public String toString() {
+        return  "Salsa: " + descripcio + " - " + String.format("%.2f",preu) + "€";
     }
 }

@@ -1,4 +1,4 @@
-package src;
+package src.model;
 
 public class Ingredient {
     private String descripcio;
@@ -17,4 +17,8 @@ public class Ingredient {
         return this.preu;
     }
 
+    @Override
+    public String toString() {
+        return  "Ingredient: " +descripcio + " - "+   String.format("%.2f",preu) + "€";
+    }
 }
