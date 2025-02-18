@@ -1,9 +1,9 @@
 package src.model;
 
 public class Base extends Producte {
-    private String mida;
+    private MidaBase mida;
 
-    public Base(String desc,double preu,String mida){
+    public Base(String desc,double preu,MidaBase mida){
         super( desc, preu);
         this.mida = mida;
     }
@@ -12,7 +12,7 @@ public class Base extends Producte {
         return descripcio;
     }
 
-    public String getMida() {
+    public MidaBase getMida() {
         return this.mida;
     }
 

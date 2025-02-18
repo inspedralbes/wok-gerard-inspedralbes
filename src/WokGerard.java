@@ -1,9 +1,6 @@
 package src;
 
-import src.model.Base;
-import src.model.Ingredient;
-import src.model.Salsa;
-import src.model.Wok;
+import src.model.*;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -69,20 +66,20 @@ public class WokGerard {
         return ingredients.toArray(new Ingredient[0]);
     }
 
-    private static String escollirMida(int base) {
+    private static MidaBase escollirMida(int base) {
 
         if (baseMida[base]){
             System.out.println("Tria la mida del Wok:");
             System.out.println("1 - Petita");
             System.out.println("2 - Gran(+1.00€)");
             if(llegirInt(scan,"Escolleix una mida:",1,2) == 1){
-                return "Petit";
+                return MidaBase.PETITA;
             }else{
-                return "Gran";
+                return MidaBase.GRAN;
             }
         }else{
             System.out.println("Aquesta base només pot anar amb la mida gran del Wok.");
-            return "Gran";
+            return MidaBase.GRAN;
         }
     }
 
@@ -96,7 +93,7 @@ public class WokGerard {
             System.out.println( (i+1) +" - "+basesDesc[i] + " - " + basePreus[i] );
         }
         int base =  llegirInt(scan,"Escolleix una base:",1,basesDesc.length)-1;
-        String mida = escollirMida(base);
+        MidaBase mida = escollirMida(base);
 
         return new Base(basesDesc[base],basePreus[base],mida );
     }
