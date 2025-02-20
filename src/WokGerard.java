@@ -11,32 +11,14 @@ import static src.UtilsGerard.Utils.llegirInt;
 public class WokGerard {
     static Scanner scan = new Scanner(System.in);
     public static void main(String[] args) {
-
+        Wok.setPreuMidaGran(1.00);
         Base base = escollirBase();
         Ingredient[] ingredients = escollirIngredients();
         Salsa salsa = escollirSalsa();
-        Wok wok = new Wok(base,ingredients,salsa);
-        System.out.println(wok);
+        Wok wok1 = new Wok(base,ingredients,salsa);
+        System.out.println(wok1);
 
     }
-
-   /* private static void mostrarResumComanda(Wok wok) {
-        System.out.println("Resum de la comanda");
-        System.out.println("Base: " + wok.get + " - " + DadesWok.basePreus[base]);
-        System.out.print("Mida: ");
-        if(mida == 1){
-            System.out.println("Petita");
-        }else{
-            System.out.println("Gran 1,00");
-        }
-        System.out.println("Ingredients:");
-        for( int ingredient : ingredients){
-            System.out.println(" - " + ingredietsDesc[ingredient] + " - " + ingredientsPreu[ingredient] );
-        }
-        System.out.println("Salsa: " +  salses[salsa]);
-        System.out.println("Preu total: " + String.format("%.2f",preu));
-    }*/
-
 
     private static Salsa escollirSalsa() {
         System.out.println("Salses disponibles:");
@@ -71,7 +53,7 @@ public class WokGerard {
         if (baseMida[base]){
             System.out.println("Tria la mida del Wok:");
             System.out.println("1 - Petita");
-            System.out.println("2 - Gran(+1.00€)");
+            System.out.println("2 - Gran(+"+Wok.getPreuMidaGran()+")");
             if(llegirInt(scan,"Escolleix una mida:",1,2) == 1){
                 return MidaBase.PETITA;
             }else{

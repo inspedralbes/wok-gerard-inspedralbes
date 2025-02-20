@@ -17,12 +17,23 @@ public class Base extends Producte {
     }
 
     public double getPreu() {
-        return super.preu;
+        if(this.mida == MidaBase.GRAN){
+            return super.preu + Wok.getPreuMidaGran();
+        }else {
+            return super.preu;
+        }
     }
 
     @Override
     public String toString() {
-        return "Base: "  + descripcio + " - " + String.format("%.2f",preu) + "€"+
+        String result = "Base: "  + descripcio + " - " + String.format("%.2f",preu) + "€"+
                 "\nMida: " + mida;
+
+        if(this.mida == MidaBase.GRAN) {
+            result += String.format(" %.2f",Wok.getPreuMidaGran());
+        }else{
+            result += String.format(" %.2f",0.0);
+        }
+        return result;
     }
 }

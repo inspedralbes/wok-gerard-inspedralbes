@@ -1,6 +1,8 @@
 package src.model;
 
 public class Wok {
+    private static int contadorWoks;
+    private static double preuMidaGran;
     private Base base;
     private Ingredient[] ingredients;
     private Salsa salsa;
@@ -11,6 +13,19 @@ public class Wok {
         this.ingredients = ingredients;
         this.salsa = salsa;
         calcularPreu();
+        contadorWoks++;
+    }
+
+    public static void setPreuMidaGran(double nouPreu){
+        preuMidaGran = nouPreu;
+    }
+
+    public static double getPreuMidaGran(){
+        return preuMidaGran;
+    }
+
+    public static int getNombreWoks(){
+        return contadorWoks;
     }
 
     private void calcularPreu(){
