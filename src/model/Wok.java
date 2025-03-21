@@ -53,4 +53,16 @@ public class Wok {
     public double getPreu(){
         return this.preu;
     }
+
+    public Base getBase() {
+        return base;
+    }
+
+    public Ingredient[] getIngredients() {
+        return ingredients;
+    }
+
+    public Salsa getSalsa() {
+        return salsa;
+    }
 }
