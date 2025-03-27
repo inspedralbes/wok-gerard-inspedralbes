@@ -1,19 +1,19 @@
 package src.BBDDConnection;
 
 public class ConnectionData {
-    private String url;
-    private String usr;
-    private String pwd;
+    private static String url = "jdbc:mysql://daw.inspedralbes.cat:3306/gtorrents_wok_daw";
+    private static String usr = "gtorrents_wokdaw";
+    private static String pwd = "1Password!";
 
-    public String getUrl() {
+    public static String getUrl() {
         return url;
     }
 
-    public String getUsr() {
+    public static String getUsr() {
         return usr;
     }
 
-    public String getPwd() {
+    public static String getPwd() {
         return pwd;
     }
 }

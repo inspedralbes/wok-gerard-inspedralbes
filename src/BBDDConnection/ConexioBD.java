@@ -6,33 +6,33 @@ import java.sql.SQLException;
 
 public class ConexioBD {
 
-    private Connection connection;
-    private static ConexioBD instance;
+    private static Connection connection;
 
     private ConexioBD(){
-        this.connection = this.openConnection();
+
     }
 
-    private Connection openConnection() {
-        Connection con = null;
+    private static void openConnection() {
+        String usr = ConnectionData.getUsr();
+        String pwd = ConnectionData.getPwd();
+        String url = ConnectionData.getUrl();
         try{
-            con = DriverManager.getConnection("TODO: connectionString");
+            connection = DriverManager.getConnection(url,usr,pwd);
         }catch (SQLException e) {
             System.out.println("Problema al establir la connexió: " + e.getMessage() );
         }
-        return con;
     }
 
-    public static ConexioBD getInstance(){
-        if(ConexioBD.instance == null){
-            ConexioBD.instance = new ConexioBD();
+    public static Connection getInstance(){
+        if(connection == null){
+            openConnection();
         }
-        return ConexioBD.instance;
+        return connection;
     }
 
     public void closeConnection() {
         try {
-            this.connection.close();
+            connection.close();
         } catch (SQLException e) {
             System.out.println("No s'ha pogut tantcar la connexió: "+ e.getMessage());
         }
