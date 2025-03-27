@@ -1,12 +1,10 @@
-﻿package src;
+package src;
 
 import src.dao.WokDAO;
-import src.dao.WokDAOCSV;
 import src.dao.WokDAOMySQL;
 import src.model.*;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 import static src.DadesWok.*;
@@ -15,6 +13,11 @@ import static src.UtilsGerard.Utils.llegirInt;
 public class WokGerard {
     static Scanner scan = new Scanner(System.in);
     static WokDAO wokDAO = new WokDAOMySQL();
+
+    /**
+     * Mètode principal de l'aplicació
+     * @param args
+     */
     public static void main(String[] args) {
         Wok.setPreuMidaGran(1.00);
         Base base = escollirBase();
