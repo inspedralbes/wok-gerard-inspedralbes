@@ -1,6 +1,7 @@
 package src;
 
 import src.dao.WokDAO;
+import src.dao.WokDAOCSV;
 import src.dao.WokDAOMySQL;
 import src.model.*;
 
@@ -21,16 +22,47 @@ public class WokGerard {
      */
     public static void main(String[] args) {
         Wok.setPreuMidaGran(1.00);
-        Base base = escollirBase();
-        Ingredient[] ingredients = escollirIngredients();
-        Salsa salsa = escollirSalsa();
-        Wok wok1 = new Wok(base,ingredients,salsa);
-        wokDAO.guardarWok(wok1);
+        int option;
+        do{
+            System.out.println("Menu");
+            System.out.println("1 - Crear un wok");
+            System.out.println("2 - Llistar tots els woks");
+            System.out.println("3 - Servir wok");
+            System.out.println("0 - Sortir");
+            option = llegirInt(scan,"Escull una opció",0,3);
+            switch (option){
+                case 1: crearWok();break;
+                case 2: llistarWoks();break;
+                case 3: servirWok();break;
+                default: System.out.println("Adeu!!");
+            }
+        }while (option != 0);
+
+    }
+
+    private static void servirWok() {
+        Wok wok = wokDAO.servirWok();
+        if (wok != null){
+            System.out.println("Aqui te el seu wok:");
+            System.out.println(wok);
+            System.out.println();
+        }
+    }
+
+    private static void llistarWoks() {
         List<Wok> woks = wokDAO.llegirWoks();
         for (Wok wok : woks){
             System.out.println(wok);
             System.out.println();
         }
+    }
+
+    private static void crearWok() {
+        Base base = escollirBase();
+        Ingredient[] ingredients = escollirIngredients();
+        Salsa salsa = escollirSalsa();
+        Wok wok1 = new Wok(base,ingredients,salsa);
+        wokDAO.guardarWok(wok1);
     }
 
     private static Salsa escollirSalsa() {

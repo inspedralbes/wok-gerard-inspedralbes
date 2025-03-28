@@ -64,6 +64,32 @@ public class WokDAOMySQL implements WokDAO{
         return woks;
     }
 
+    @Override
+    public Wok servirWok() {
+        Wok wok = null;
+        try {
+            Connection con = ConexioBD.getInstance();
+            PreparedStatement stmt = con.prepareStatement("SELECT * FROM Wok ORDER BY id ASC LIMIT 1");
+            ResultSet rs = stmt.executeQuery();
+            if(rs.next()){
+                Base base = new Base( rs.getString("basedesc"),
+                        rs.getDouble("preubase"),
+                        MidaBase.valueOf(rs.getString("midabase")));
+                Ingredient[] ings = stringToIngredients(rs.getString("ingredients"));
+                Salsa salsa = new Salsa(rs.getString("salsadesc"),
+                        rs.getDouble("preusalsa") );
+                wok = new Wok(base,ings,salsa);
+                //Eliminem el wok
+                PreparedStatement delStmt = con.prepareStatement("DELETE FROM Wok WHERE id = ?");
+                delStmt.setInt(1,rs.getInt("ID"));
+                delStmt.executeUpdate();
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return wok;
+    }
+
     private  Ingredient[] stringToIngredients(String stringIngs) {
         List<Ingredient> ingredients = new ArrayList<>();
         String[] ingredientsData =  stringIngs.split(";");

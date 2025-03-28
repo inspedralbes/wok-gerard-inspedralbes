@@ -60,6 +60,14 @@ public class WokDAOCSV implements WokDAO{
         return woks;
     }
 
+    @Override
+    public Wok servirWok() {
+        //TODO: Hem de llegir el registre més antic,
+        // es a dir el primer, i eliminarlo
+        System.out.println("TODO: pendent d'implementar.");
+        return null;
+    }
+
     private Wok wokFromCSV(String data) {
         String[] camps = data.split(",");
         Base base = new Base(camps[0],Double.parseDouble(camps[1]), MidaBase.valueOf(camps[2]));
