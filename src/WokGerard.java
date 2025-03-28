@@ -5,6 +5,7 @@ import src.dao.WokDAOMySQL;
 import src.model.*;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 import static src.DadesWok.*;
@@ -25,11 +26,11 @@ public class WokGerard {
         Salsa salsa = escollirSalsa();
         Wok wok1 = new Wok(base,ingredients,salsa);
         wokDAO.guardarWok(wok1);
-        /*List<Wok> woks = wokDAO.llegirWoks();
+        List<Wok> woks = wokDAO.llegirWoks();
         for (Wok wok : woks){
             System.out.println(wok);
             System.out.println();
-        }*/
+        }
     }
 
     private static Salsa escollirSalsa() {

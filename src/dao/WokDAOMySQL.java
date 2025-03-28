@@ -1,12 +1,14 @@
 package src.dao;
 
+import com.mysql.cj.protocol.a.TextResultsetReader;
 import src.BBDDConnection.ConexioBD;
-import src.model.Ingredient;
-import src.model.Wok;
+import src.model.*;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class WokDAOMySQL implements WokDAO{
@@ -42,8 +44,35 @@ public class WokDAOMySQL implements WokDAO{
 
     @Override
     public List<Wok> llegirWoks() {
-        //TODO: connectar-me a la BBDD
-        //TODO:Recuperar tots els woks
-        return List.of();
+        List<Wok> woks = new ArrayList<>();
+        try {
+            Connection con = ConexioBD.getInstance();
+            PreparedStatement stmt = con.prepareStatement("SELECT * FROM Wok");
+            ResultSet rs = stmt.executeQuery();
+            while(rs.next()){
+                Base base = new Base( rs.getString("basedesc"),
+                                      rs.getDouble("preubase"),
+                                      MidaBase.valueOf(rs.getString("midabase")));
+                Ingredient[] ings = stringToIngredients(rs.getString("ingredients"));
+                Salsa salsa = new Salsa(rs.getString("salsadesc"),
+                        rs.getDouble("preusalsa") );
+                woks.add(new Wok(base,ings,salsa));
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return woks;
+    }
+
+    private  Ingredient[] stringToIngredients(String stringIngs) {
+        List<Ingredient> ingredients = new ArrayList<>();
+        String[] ingredientsData =  stringIngs.split(";");
+        for (String ing: ingredientsData){
+            if(!ing.isEmpty()) {
+                String parts[] = ing.split(":");
+                ingredients.add(new Ingredient(parts[0], Double.parseDouble(parts[1])));
+            }
+        }
+        return ingredients.toArray(new Ingredient[0]);
     }
 }
